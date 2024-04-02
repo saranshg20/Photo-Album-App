@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 export const styles = StyleSheet.create({
   button: {
@@ -15,6 +16,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  camera_container: {
+    flex: 1,
+    justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#000",
+    padding: 8,
   },
   text: {
     fontSize: 16,
