@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home } from "./navigation/Home";
+import { Home } from "./navigation/HomeScreen";
 import { ImageCollectionScreen } from "./navigation/ImageCollectionScreen";
 import { CameraScreen } from "./navigation/CameraScreen";
 
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeScreen" component={Home} options={{ title: "CapView" }} />
+        <Stack.Screen name="HomeScreen" component={Home} options={{ title: "CapView", statusBarColor: "black" }} />
         <Stack.Screen name="Profile" component={ImageCollectionScreen} />
         <Stack.Screen
           name="Camera"
