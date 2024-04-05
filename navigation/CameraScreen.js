@@ -7,16 +7,16 @@ import { styles } from "../style";
 import { PreviewComponent } from "../components/Preview.Component";
 
 export const CameraScreen = () => {
-  const [capturedImage, setCapturedImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState(false);
+    const [capturedImage, setCapturedImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(false);
 
-  return (
-    <View style={styles.cameraContainer}>
-      {previewImage ? (
-          <PreviewComponent setPreviewImage={setPreviewImage} capturedImage={capturedImage}/>
-          ) : (
-          <CameraComponent setCapturedImage={setCapturedImage} setPreviewImage={setPreviewImage} />
-      )}
-    </View>
-  );
+    return (
+        <View style={styles.cameraContainer}>
+            {previewImage ? (
+                <PreviewComponent setPreviewImage={setPreviewImage} capturedImage={capturedImage} />
+            ) : (
+                <CameraComponent setCapturedImage={setCapturedImage} setPreviewImage={setPreviewImage} />
+            )}
+        </View>
+    );
 };

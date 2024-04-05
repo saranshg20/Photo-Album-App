@@ -9,37 +9,41 @@ import { DatabaseProvider } from "./contexts/Database.context";
 
 const Stack = createNativeStackNavigator();
 const App = () => {
-  const [fontsLoaded, fontError] = useFonts({
-    Pacifico: require("./assets/fonts/Pacifico-Regular.ttf"),
-  });
+    const [fontsLoaded, fontError] = useFonts({
+        Pacifico: require("./assets/fonts/Pacifico-Regular.ttf"),
+    });
 
-  if (!fontsLoaded) {
+    if (!fontsLoaded) {
+        return (
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <ActivityIndicator size="large" color="#0000ff" />
+                <Text>Loading...</Text>
+            </View>
+        );
+    }
+
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading...</Text>
-      </View>
+        <DatabaseProvider>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen
+                        name="HomeScreen"
+                        component={Home}
+                        options={{
+                            title: "CapView",
+                            headerTitleStyle: { fontFamily: "Pacifico" },
+                            statusBarColor: "black",
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Camera"
+                        component={CameraScreen}
+                        options={{ headerShown: false, statusBarHidden: false, statusBarColor: "black" }}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </DatabaseProvider>
     );
-  }
-
-  return (
-    <DatabaseProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="HomeScreen"
-            component={Home}
-            options={{ title: "CapView", headerTitleStyle: { fontFamily: "Pacifico" }, statusBarColor: "black" }}
-          />
-          <Stack.Screen
-            name="Camera"
-            component={CameraScreen}
-            options={{ headerShown: false, statusBarHidden: false, statusBarColor: "black" }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </DatabaseProvider>
-  );
 };
 
 export default App;
