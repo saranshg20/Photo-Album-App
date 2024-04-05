@@ -17,18 +17,11 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  camera_container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#000",
-    padding: 8,
-  },
   text: {
+    fontFamily: 'Pacifico',
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
+    letterSpacing: 0.8,
     color: "white",
   },
   cameraContainer: {
@@ -47,7 +40,6 @@ export const styles = StyleSheet.create({
     margin: 64,
   },
   clickPictureButton: {
-    position: "",
     width: 64,
     height: 64,
     borderRadius: 32,
@@ -75,5 +67,19 @@ export const styles = StyleSheet.create({
     backgroundColor: "black",
     borderWidth: 1,
     borderColor: "white",
-  }
+  },
+  cameraButton: {
+    position: "absolute",
+    right: 40,
+    bottom: 40,
+    borderWidth: 1,
+    borderColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    elevation: 3,
+    backgroundColor: "black",
+  },
 });
