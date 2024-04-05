@@ -1,9 +1,10 @@
 import { Pressable, Text, View } from "react-native";
 import { styles } from "../style";
 import { Entypo } from "@expo/vector-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import { DatabaseContext } from "../contexts/Database.context";
 
 export const Home = ({ navigation }) => {
   const [cameraPermission, setCameraPermission] = useState(null);
@@ -14,13 +15,13 @@ export const Home = ({ navigation }) => {
     const getPermissions = async () => {
       if (cameraPermission == null || cameraPermission.status != "granted") {
         const _cameraPermission = await Camera.requestCameraPermissionsAsync();
-        console.log("Camera Permission", _cameraPermission);
+        // console.log("Camera Permission", _cameraPermission);
         setCameraPermission(_cameraPermission.status == "granted");
       }
 
       if (mediaPermission == null || mediaPermission.status != "granted") {
         const _mediaPermission = await MediaLibrary.requestPermissionsAsync();
-        console.log("Media Permission", _mediaPermission);
+        // console.log("Media Permission", _mediaPermission);
         setMediaPermission(_mediaPermission.status == "granted");
       }
     };

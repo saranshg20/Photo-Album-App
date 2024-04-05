@@ -1,41 +1,34 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { styles } from "../style";
 import { ImageBackground } from "react-native";
 import * as FileSystem from "expo-file-system";
+import { DatabaseContext } from "../contexts/Database.context";
 
 // Preview Component
 export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
-    //create directory if not exists
-    const createDirectory = async (dirPath) => {
-        try {
-          const info = await FileSystem.getInfoAsync(dirPath);
-          console.log("E");
-          if (!info.exists) {
-            await FileSystem.makeDirectoryAsync(dirPath, { intermediates: true });
-            console.log('Directory created at', dirPath);
-          } else {
-            console.log('Directory already exists at', dirPath);
-          }
-        } catch (error) {
-          console.error('Error when creating directory', error);
-        }
-      };
-    
-    const saveImage = async () => {
-        try {
-            const newLocation =  FileSystem.documentDirectory + capturedImage.uri.split('/').pop();
-            // await createDirectory(newLocation);
+  const { db, insertIntoDB, showDBTables } = useContext(DatabaseContext);
+  
 
-            await FileSystem.copyAsync({
-                from: capturedImage.uri,
-                to: newLocation,
-              });
-              console.log("Saving location", newLocation.replace('file://', ''));
-        } catch (error) {
-            console.log("Error while saving image:", error);
-        }
+  // save image in local storage of device
+  const saveImage = async () => {
+    try {
+      const newLocation = FileSystem.documentDirectory + capturedImage.uri.split("/").pop();
+      // await createDirectory(newLocation);
+
+      await FileSystem.copyAsync({
+        from: capturedImage.uri,
+        to: newLocation,
+      });
+      console.log("Saving location", newLocation);
+
+      insertIntoDB(db, newLocation);
+      showDBTables(db);
+      setPreviewImage(false);
+    } catch (error) {
+      console.log("Error while saving image:", error);
     }
+  };
 
   return (
     <View style={styles.cameraPreview}>

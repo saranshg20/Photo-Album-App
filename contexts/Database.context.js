@@ -22,7 +22,7 @@ export const DatabaseProvider = ({ children }) => {
     }
   };
 
-  const showDBTables = () => {
+  const showDBTables = (db) => {
     try {
       db.transaction(
         (tx) => {
@@ -47,12 +47,12 @@ export const DatabaseProvider = ({ children }) => {
   };
 
   // insert filepaths into db
-  const insertIntoDB = () => {
+  const insertIntoDB = (db, filepath) => {
     try {
       db.transaction((tx) => {
         tx.executeSql(
           "INSERT INTO images (path) VALUES (?);",
-          [newLocation],
+          [filepath],
           (_, { rows }) => console.log("Rows", JSON.stringify(rows)),
           (_, error) => console.log("Error when inserting", error),
         );
@@ -62,10 +62,19 @@ export const DatabaseProvider = ({ children }) => {
     }
   };
 
+  // initialize
   useEffect(() => {
     const db = SQLite.openDatabase("db.db");
     setDb(db);
   }, []);
+
+  // Initialize the table
+  useEffect(() => {
+    if (db) {
+      console.log("Dcacsda");
+      initDB();
+    }
+  }, [db]);
 
   return (
     <DatabaseContext.Provider value={{ db, initDB, showDBTables, insertIntoDB }}>{children}</DatabaseContext.Provider>
