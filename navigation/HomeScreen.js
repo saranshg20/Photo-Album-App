@@ -11,7 +11,7 @@ import { DatabaseContext } from "../contexts/Database.context";
 export const Home = ({ navigation }) => {
     const [cameraPermission, setCameraPermission] = useState(null);
     const [mediaPermission, setMediaPermission] = useState(null);
-    const { db, showDBTables } = useContext(DatabaseContext);
+    const { db, fetchDBTables } = useContext(DatabaseContext);
     const isFocused = useIsFocused();
 
     useEffect(() => {
@@ -33,14 +33,14 @@ export const Home = ({ navigation }) => {
 
     const fetchData = async () => {
         console.log("Fetching data");
-        const result = await showDBTables(db);
+        const result = await fetchDBTables(db);
         console.log("Data from tables", result);
         return result;
     };
 
     return (
         <View style={styles.container}>
-            <ImageCollectionComponent fetchData={fetchData} navigation={navigation}/>
+            <ImageCollectionComponent fetchData={fetchData} navigation={navigation} />
             <Pressable style={styles.cameraButton} onPress={() => navigation.navigate("Camera")}>
                 <Entypo name="camera" size={24} color="white" />
             </Pressable>

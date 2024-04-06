@@ -4,7 +4,7 @@ import { styles } from "../style";
 
 export const SingleImageComponent = ({ filepath, navigation, initialIdx, data }) => {
     const handlePress = () => {
-        navigation.navigate('FullImageScreen', { filepath, initialIdx, data });
+        navigation.navigate("FullImageScreen", { filepath, initialIdx, data });
     };
 
     return (

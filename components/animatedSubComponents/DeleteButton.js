@@ -1,63 +1,19 @@
 // Reference: https://github.com/alexandrius/react-native-delete-button
 import React, { useState, useRef } from "react";
-import { TouchableOpacity, View, Animated, StyleSheet, Easing, Platform } from "react-native";
+import { TouchableOpacity, View, Animated, Easing, Platform } from "react-native";
 import Icon from "./icon";
+import { styles } from "./DeleteButtonStyle";
 
 const ICON_SIZE = 24;
 const MAX_SCALE = 4;
 const MAX_POSITION = 5;
 const RESET_POSITION = 6;
-const BUTTON_HEIGHT = 45;
 const DELETE_TEXT_ARR = "Delete".split("");
 
 const easing = Easing.bezier(0.11, 0, 0.5, 0);
 const useNativeDriver = false;
 
-const styles = StyleSheet.create({
-    button: {
-        height: BUTTON_HEIGHT,
-        paddingHorizontal: 15,
-        backgroundColor: "black",
-        borderRadius: 4,
-        overflow: "hidden",
-        justifyContent: "center",
-    },
-    contentContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        height: 100,
-        width: 100,
-    },
-    labelContainer: {
-        position: "absolute",
-        height: BUTTON_HEIGHT,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-        left: 25,
-    },
-    letterContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-    },
-    letter: {
-        color: "white",
-        fontFamily: "Pacifico",
-        fontWeight: "bold",
-        marginRight: Platform.select({ ios: 0, android: 1 }),
-    },
-    top: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    bottom: {
-        alignItems: "center",
-        justifyContent: "center",
-        position: "absolute",
-    },
-});
-
-export default function DeleteButton() {
+export default function DeleteButton({ onAnimationComplete }) {
     const [scale] = useState(new Animated.Value(1));
     const [position] = useState(new Animated.Value(1));
     const [letterAnimations] = useState(DELETE_TEXT_ARR.map((_) => new Animated.Value(0)));
@@ -140,12 +96,15 @@ export default function DeleteButton() {
     const startAnimation = () => {
         const config = {
             toValue: MAX_SCALE,
-            duration: 600,
+            duration: 200,
             easing: Easing.bezier(0.25, 1, 0.5, 1),
             useNativeDriver,
         };
         Animated.timing(position, config).start();
-        Animated.timing(scale, config).start(startLetterAnimations);
+        Animated.timing(scale, config).start(() => {
+            startLetterAnimations();
+            onAnimationComplete();
+        });
     };
 
     const topTransforms = [

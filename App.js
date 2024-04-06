@@ -35,7 +35,7 @@ const App = () => {
                             title: "CapView",
                             headerTitleStyle: { fontFamily: "Pacifico" },
                             statusBarColor: "black",
-                            alignItems: "center", 
+                            alignItems: "center",
                         }}
                     />
                     <Stack.Screen
@@ -45,7 +45,7 @@ const App = () => {
                             title: "Gallery",
                             headerTitleStyle: { fontFamily: "Pacifico" },
                             statusBarColor: "black",
-                            alignItems: "center"
+                            alignItems: "center",
                         }}
                     />
                     <Stack.Screen

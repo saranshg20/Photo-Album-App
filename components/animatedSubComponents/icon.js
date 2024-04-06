@@ -12,7 +12,6 @@ const DeleteIconFont = createIconSet(
 
 class Icon extends React.Component {
     render() {
-        console.log("DeleteIconFont");
         return <DeleteIconFont {...this.props} />;
     }
 }

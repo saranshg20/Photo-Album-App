@@ -3,7 +3,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { DatabaseContext } from "../contexts/Database.context";
 import { SingleImageComponent } from "./SingleImage.Component";
 import { FlatList } from "react-native";
-import {styles} from "../style";
+import { styles } from "../style";
 
 export const ImageCollectionComponent = ({ fetchData, navigation }) => {
     const [data, setData] = useState(null);
@@ -19,13 +19,18 @@ export const ImageCollectionComponent = ({ fetchData, navigation }) => {
 
     return (
         <View style={styles.imageContainer2}>
-          {
-            data && data.map((item, index) => {
-              return (
-                <SingleImageComponent key={index} initialIdx={index} data={data} filepath={item.path} navigation={navigation} />
-              );
-            })
-          }
-      </View>
+            {data &&
+                data.map((item, index) => {
+                    return (
+                        <SingleImageComponent
+                            key={index}
+                            initialIdx={index}
+                            data={data}
+                            filepath={item.path}
+                            navigation={navigation}
+                        />
+                    );
+                })}
+        </View>
     );
 };

@@ -22,7 +22,7 @@ export const DatabaseProvider = ({ children }) => {
         }
     };
 
-    const showDBTables = async (db) => {
+    const fetchDBTables = async (db) => {
         try {
             const data = await new Promise((resolve, reject) => {
                 db.transaction(
@@ -89,12 +89,12 @@ export const DatabaseProvider = ({ children }) => {
     };
 
     // delete from db
-    const deleteFromDB = (db, path) => {
+    const deleteFromDB = (db, filepath) => {
         try {
             db.transaction((tx) => {
                 tx.executeSql(
                     "DELETE FROM images WHERE path = ?;",
-                    [path],
+                    [filepath],
                     (_, { rowsAffected }) => console.log("Rows affected:", rowsAffected),
                     (_, error) => console.log("Error when deleting", error),
                 );
@@ -118,7 +118,7 @@ export const DatabaseProvider = ({ children }) => {
     }, [db]);
 
     return (
-        <DatabaseContext.Provider value={{ db, initDB, showDBTables, insertIntoDB, clearDB }}>
+        <DatabaseContext.Provider value={{ db, initDB, fetchDBTables, insertIntoDB, deleteFromDB, clearDB }}>
             {children}
         </DatabaseContext.Provider>
     );

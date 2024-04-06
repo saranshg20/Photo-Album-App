@@ -7,7 +7,7 @@ import { DatabaseContext } from "../contexts/Database.context";
 
 // Preview Component
 export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
-    const { db, insertIntoDB, showDBTables, clearDB } = useContext(DatabaseContext);
+    const { db, insertIntoDB, fetchDBTables, clearDB } = useContext(DatabaseContext);
 
     // save image in local storage of device
     const saveImage = async () => {
@@ -30,7 +30,7 @@ export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
             });
             console.log("Saving location", newLocation);
             insertIntoDB(db, newLocation);
-            showDBTables(db);
+            fetchDBTables(db);
             setPreviewImage(false);
         } catch (error) {
             console.log("Error while saving image:", error);
