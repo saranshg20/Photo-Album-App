@@ -6,11 +6,13 @@ import { CameraScreen } from "./navigation/CameraScreen";
 import { useFonts } from "expo-font";
 import { ActivityIndicator, Text, View } from "react-native";
 import { DatabaseProvider } from "./contexts/Database.context";
+import FullImageScreen from "./navigation/FullImageScreen";
 
 const Stack = createNativeStackNavigator();
 const App = () => {
     const [fontsLoaded, fontError] = useFonts({
         Pacifico: require("./assets/fonts/Pacifico-Regular.ttf"),
+        icon: require("./assets/fonts/icomoon.ttf"),
     });
 
     if (!fontsLoaded) {
@@ -33,6 +35,17 @@ const App = () => {
                             title: "CapView",
                             headerTitleStyle: { fontFamily: "Pacifico" },
                             statusBarColor: "black",
+                            alignItems: "center", 
+                        }}
+                    />
+                    <Stack.Screen
+                        name="FullImageScreen"
+                        component={FullImageScreen}
+                        options={{
+                            title: "Gallery",
+                            headerTitleStyle: { fontFamily: "Pacifico" },
+                            statusBarColor: "black",
+                            alignItems: "center"
                         }}
                     />
                     <Stack.Screen

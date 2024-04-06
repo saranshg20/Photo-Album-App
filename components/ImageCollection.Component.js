@@ -5,7 +5,7 @@ import { SingleImageComponent } from "./SingleImage.Component";
 import { FlatList } from "react-native";
 import {styles} from "../style";
 
-export const ImageCollectionComponent = ({ fetchData }) => {
+export const ImageCollectionComponent = ({ fetchData, navigation }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -18,13 +18,14 @@ export const ImageCollectionComponent = ({ fetchData }) => {
     }, [fetchData]);
 
     return (
-        <View>
-        <FlatList
-            style={styles.list}
-          data={data}
-          renderItem={({ item }) => <SingleImageComponent filepath={item.path} />}
-          keyExtractor={(item, index) => index.toString()}
-        />
+        <View style={styles.imageContainer2}>
+          {
+            data && data.map((item, index) => {
+              return (
+                <SingleImageComponent key={index} initialIdx={index} data={data} filepath={item.path} navigation={navigation} />
+              );
+            })
+          }
       </View>
     );
 };

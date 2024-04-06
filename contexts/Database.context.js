@@ -89,12 +89,12 @@ export const DatabaseProvider = ({ children }) => {
     };
 
     // delete from db
-    const deleteFromDB = (db, id) => {
+    const deleteFromDB = (db, path) => {
         try {
             db.transaction((tx) => {
                 tx.executeSql(
-                    "DELETE FROM images WHERE id = ?;",
-                    [id],
+                    "DELETE FROM images WHERE path = ?;",
+                    [path],
                     (_, { rowsAffected }) => console.log("Rows affected:", rowsAffected),
                     (_, error) => console.log("Error when deleting", error),
                 );

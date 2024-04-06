@@ -40,7 +40,7 @@ export const Home = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <ImageCollectionComponent fetchData={fetchData} />
+            <ImageCollectionComponent fetchData={fetchData} navigation={navigation}/>
             <Pressable style={styles.cameraButton} onPress={() => navigation.navigate("Camera")}>
                 <Entypo name="camera" size={24} color="white" />
             </Pressable>

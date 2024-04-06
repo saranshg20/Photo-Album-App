@@ -14,8 +14,6 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
     },
     text: {
         fontFamily: "Pacifico",
@@ -83,26 +81,37 @@ export const styles = StyleSheet.create({
         backgroundColor: "black",
     },
     imageContainer: {
-        width: '1000',
+        width: 100,
+        height: 100,
         paddingHorizontal: 20,
         paddingVertical: 10,
         marginVertical: 5,
+        marginHorizontal: 15,
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: "gray",
-        borderRadius: 10,  
-        border: 2, 
-        borderColor: 'black',
+        borderRadius: 10,
+        border: 2,
+        borderColor: "black",
         elevation: 3,
-
+    },
+    imageContainer2: {
+        width: "100%",
+        flexDirection: "row",
+        flexWrap: "wrap",
     },
     list: {
-      width: '100%',
+        width: "100%",
     },
     image: {
-      borderRadius: 5,
-      width: 50,
-      height: 50,
+        borderRadius: 5,
+        width: "100%",
+        aspectRatio: 1,
+        margin: 2,
+    },
+    imageTouchableContainer: {
+        width: "24%",
+        marginHorizontal: 1,
     },
 });
