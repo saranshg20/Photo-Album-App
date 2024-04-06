@@ -6,6 +6,9 @@ import * as MediaLibrary from "expo-media-library";
 import { styles } from "../style";
 import { PreviewComponent } from "../components/Preview.Component";
 
+/**
+ * @returns a View consisting of PreviewComponent and CameraComponent
+ */
 export const CameraScreen = () => {
     const [capturedImage, setCapturedImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(false);

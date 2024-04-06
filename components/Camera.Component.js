@@ -5,6 +5,11 @@ import { CameraView } from "expo-camera/next";
 import { TouchableOpacity } from "react-native";
 import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 
+/**
+ * @param setCaturedImage: sets the state with newly captured image path
+ * @param setPreviewImage: sets the state to rerender the screen with preview-image
+ * @returns camera component having functions to handle rotate-camera, set-flash and click-picture button 
+ */
 export const CameraComponent = ({ setCapturedImage, setPreviewImage }) => {
     const camera = useRef(null);
     const [facing, setFacing] = useState("back");

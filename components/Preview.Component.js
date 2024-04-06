@@ -5,7 +5,11 @@ import { ImageBackground } from "react-native";
 import * as FileSystem from "expo-file-system";
 import { DatabaseContext } from "../contexts/Database.context";
 
-// Preview Component
+/**
+ * @param setPreviewImage to set the preview image screen
+ * @param capturedImage to set the image filepath
+ * @returns a preview-image screen, contains options to retake and save image
+ */
 export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
     const { db, insertIntoDB, fetchDBTables, clearDB } = useContext(DatabaseContext);
 
@@ -28,7 +32,6 @@ export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
                 from: capturedImage.uri,
                 to: newLocation,
             });
-            console.log("Saving location", newLocation);
             insertIntoDB(db, newLocation);
             fetchDBTables(db);
             setPreviewImage(false);

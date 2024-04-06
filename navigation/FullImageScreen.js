@@ -6,6 +6,10 @@ import Swiper from "react-native-swiper";
 import DeleteButton from "../components/animatedSubComponents/DeleteButton";
 import { DatabaseContext } from "../contexts/Database.context";
 
+/**
+ * @param route inbuilt prop included when navigated to a screen from React-Navigation
+ * @returns a Gallery screen to view the full size image
+ */
 const FullImageScreen = ({ route }) => {
     const { filepath, data, initialIdx } = route.params;
     const [imageData, setImageData] = useState(data);

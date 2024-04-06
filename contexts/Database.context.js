@@ -22,6 +22,7 @@ export const DatabaseProvider = ({ children }) => {
         }
     };
 
+    // fetch database tables
     const fetchDBTables = async (db) => {
         try {
             const data = await new Promise((resolve, reject) => {
@@ -104,7 +105,7 @@ export const DatabaseProvider = ({ children }) => {
         }
     };
 
-    // initialize
+    // initialize db on mount
     useEffect(() => {
         const db = SQLite.openDatabase("db.db");
         setDb(db);

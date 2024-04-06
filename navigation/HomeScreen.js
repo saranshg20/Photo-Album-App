@@ -8,10 +8,16 @@ import { ImageCollectionComponent } from "../components/ImageCollection.Componen
 import { useIsFocused } from "@react-navigation/native";
 import { DatabaseContext } from "../contexts/Database.context";
 
+/**
+ * @param navigation is included in every screen inside the Stack.Navigator
+ * @returns Home-Screen consisting of button to direct to CameraScreen and ImageCollectionComponent
+ */
 export const Home = ({ navigation }) => {
     const [cameraPermission, setCameraPermission] = useState(null);
     const [mediaPermission, setMediaPermission] = useState(null);
     const { db, fetchDBTables } = useContext(DatabaseContext);
+
+    // To rerender- whenever user returns to Home-Screen
     const isFocused = useIsFocused();
 
     useEffect(() => {
@@ -32,9 +38,7 @@ export const Home = ({ navigation }) => {
     }, []);
 
     const fetchData = async () => {
-        console.log("Fetching data");
         const result = await fetchDBTables(db);
-        console.log("Data from tables", result);
         return result;
     };
 
