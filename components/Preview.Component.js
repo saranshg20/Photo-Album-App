@@ -1,4 +1,4 @@
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 import { styles } from "../style";
 import { ImageBackground } from "react-native";
@@ -44,12 +44,12 @@ export const PreviewComponent = ({ setPreviewImage, capturedImage }) => {
         <View style={styles.cameraPreview}>
             <ImageBackground source={{ uri: capturedImage && capturedImage.uri }} style={{ flex: 1 }} />
             <View style={{ flexDirection: "row", justifyContent: "space-evenly", padding: 10 }}>
-                <Pressable style={[styles.button, styles.previewButton]} onPress={() => setPreviewImage(false)}>
+                <TouchableOpacity style={[styles.button, styles.previewButton]} onPress={() => setPreviewImage(false)} activeOpacity={0.5}>
                     <Text style={styles.text}>Retake</Text>
-                </Pressable>
-                <Pressable style={[styles.button, styles.previewButton]} onPress={saveImage}>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.button, styles.previewButton]} onPress={saveImage} activeOpacity={0.5}>
                     <Text style={styles.text}>Save Image</Text>
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </View>
     );

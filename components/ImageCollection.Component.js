@@ -9,7 +9,7 @@ import { styles } from "../style";
  * @returns a collection of clicked images in grid format
  */
 export const ImageCollectionComponent = ({ fetchData, navigation }) => {
-  const [data, setData] = useState(null);
+    const [data, setData] = useState(null);
 
     // To fetch image-path data from db when mounted
     useEffect(() => {

@@ -8,7 +8,7 @@ import { FontAwesome6, Ionicons } from "@expo/vector-icons";
 /**
  * @param setCaturedImage: sets the state with newly captured image path
  * @param setPreviewImage: sets the state to rerender the screen with preview-image
- * @returns camera component having functions to handle rotate-camera, set-flash and click-picture button 
+ * @returns camera component having functions to handle rotate-camera, set-flash and click-picture button
  */
 export const CameraComponent = ({ setCapturedImage, setPreviewImage }) => {
     const camera = useRef(null);
@@ -43,7 +43,7 @@ export const CameraComponent = ({ setCapturedImage, setPreviewImage }) => {
         <View style={styles.cameraContainer}>
             <CameraView ref={camera} style={styles.camera} facing={facing} flash={flash}>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.clickPictureButton} onPress={clickPicture} />
+                    <TouchableOpacity style={styles.clickPictureButton} onPress={clickPicture} activeOpacity={0.3} />
                     <FontAwesome6
                         name="camera-rotate"
                         size={24}

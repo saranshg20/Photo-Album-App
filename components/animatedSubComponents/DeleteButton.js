@@ -1,7 +1,7 @@
 // Reference: https://github.com/alexandrius/react-native-delete-button
 import React, { useState, useRef } from "react";
 import { TouchableOpacity, View, Animated, Easing, Platform } from "react-native";
-import Icon from "./icon";
+import Icon from "./DeleteIcon";
 import { styles } from "./DeleteButtonStyle";
 
 const ICON_SIZE = 24;

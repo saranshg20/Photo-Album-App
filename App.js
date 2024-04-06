@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { ActivityIndicator, Text, View } from "react-native";
 import { DatabaseProvider } from "./contexts/Database.context";
 import FullImageScreen from "./navigation/FullImageScreen";
+import { SplashScreen } from "./navigation/SplashScreen";
 
 const Stack = createNativeStackNavigator();
 const App = () => {
@@ -60,6 +61,11 @@ const App = () => {
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen
+                        name="Splash"
+                        component={SplashScreen}
+                        options={{ headerShown: false, statusBarColor: "black" }}
+                    />
+                    <Stack.Screen
                         name="HomeScreen"
                         component={Home}
                         options={{
@@ -69,7 +75,7 @@ const App = () => {
                             alignItems: "center",
                             presentation: "modal",
                             animationTypeForReplace: "push",
-                            animation: "slide_from_right",
+                            animation: "slide_from_bottom",
                         }}
                     />
                     <Stack.Screen

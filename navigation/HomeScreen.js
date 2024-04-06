@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Animated, InteractionManager, Pressable, Text, View } from "react-native";
 import { styles } from "../style";
 import { Entypo } from "@expo/vector-icons";
 import { useState, useEffect, useContext, useCallback } from "react";
@@ -16,6 +16,9 @@ export const Home = ({ navigation }) => {
     const [cameraPermission, setCameraPermission] = useState(null);
     const [mediaPermission, setMediaPermission] = useState(null);
     const { db, fetchDBTables } = useContext(DatabaseContext);
+
+    // Animate the camera button
+    const scale = new Animated.Value(1);
 
     // To rerender- whenever user returns to Home-Screen
     const isFocused = useIsFocused();
@@ -42,11 +45,33 @@ export const Home = ({ navigation }) => {
         return result;
     };
 
+    // handle icon-resize and navigation on camera-button press
+    const handleCameraBtnPress = () => {
+        Animated.sequence([
+            Animated.timing(scale, {
+                toValue: 0.8,
+                duration: 100,
+                useNativeDriver: true,
+            }),
+            Animated.timing(scale, {
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: true,
+            }),
+        ]).start(() => {
+            InteractionManager.runAfterInteractions(() => {
+                navigation.navigate("Camera");
+            });
+        });
+    };
+
     return (
         <View style={styles.container}>
             <ImageCollectionComponent fetchData={fetchData} navigation={navigation} />
-            <Pressable style={styles.cameraButton} onPress={() => navigation.navigate("Camera")}>
-                <Entypo name="camera" size={24} color="white" />
+            <Pressable style={styles.cameraButton} onPress={handleCameraBtnPress}>
+                <Animated.View style={{ transform: [{ scale }] }}>
+                    <Entypo name="camera" size={24} color="white" />
+                </Animated.View>
             </Pressable>
         </View>
     );
