@@ -36,7 +36,7 @@ export const CameraComponent = ({ setCapturedImage, setPreviewImage }) => {
 
     return (
         <View style={styles.cameraContainer}>
-            <CameraView ref={camera} style={styles.camera} facing={facing} flash={flash ? "on" : "off"}>
+            <CameraView ref={camera} style={styles.camera} facing={facing} flash={flash}>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.clickPictureButton} onPress={clickPicture} />
                     <FontAwesome6
@@ -46,7 +46,7 @@ export const CameraComponent = ({ setCapturedImage, setPreviewImage }) => {
                         color="white"
                         onPress={toggleCameraFacing}
                     />
-                    {flash ? (
+                    {flash == "on" ? (
                         <Ionicons name="flash" size={24} style={styles.flashIcon} color="white" onPress={toggleFlash} />
                     ) : (
                         <Ionicons
