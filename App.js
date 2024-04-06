@@ -24,6 +24,37 @@ const App = () => {
         );
     }
 
+    // Screen transition configuration
+    const screenTransitionConfig = {
+        gestureDirection: "horizontal",
+        transitionSpec: {
+            open: {
+                animation: "timing",
+                config: {
+                    duration: 500,
+                },
+            },
+            close: {
+                animation: "timing",
+                config: {
+                    duration: 500,
+                },
+            },
+        },
+        cardStyleInterpolator: ({ current, layouts }) => ({
+            cardStyle: {
+                transform: [
+                    {
+                        translateX: current.progress.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [layouts.screen.width, 0],
+                        }),
+                    },
+                ],
+            },
+        }),
+    };
+
     return (
         <DatabaseProvider>
             <NavigationContainer>
@@ -36,6 +67,9 @@ const App = () => {
                             headerTitleStyle: { fontFamily: "Pacifico" },
                             statusBarColor: "black",
                             alignItems: "center",
+                            presentation: "modal",
+                            animationTypeForReplace: "push",
+                            animation: "slide_from_right",
                         }}
                     />
                     <Stack.Screen
@@ -46,12 +80,22 @@ const App = () => {
                             headerTitleStyle: { fontFamily: "Pacifico" },
                             statusBarColor: "black",
                             alignItems: "center",
+                            presentation: "modal",
+                            animationTypeForReplace: "push",
+                            animation: "slide_from_left",
                         }}
                     />
                     <Stack.Screen
                         name="Camera"
                         component={CameraScreen}
-                        options={{ headerShown: false, statusBarHidden: false, statusBarColor: "black" }}
+                        options={{
+                            headerShown: false,
+                            statusBarHidden: false,
+                            statusBarColor: "black",
+                            presentation: "modal",
+                            animationTypeForReplace: "push",
+                            animation: "slide_from_bottom",
+                        }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>
