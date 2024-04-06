@@ -9,7 +9,7 @@ export const SplashScreen = ({ navigation }) => {
     useEffect(() => {
         setTimeout(() => {
             navigation.replace("HomeScreen");
-        }, 3000);
+        }, 1500);
         Animated.sequence([
             Animated.parallel([
                 Animated.spring(leftPosition, {
